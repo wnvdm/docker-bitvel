@@ -12,3 +12,8 @@ RUN apk add --no-cache git glide
 RUN git clone https://github.com/btcsuite/btcd $PROJ_DIR
 RUN glide install
 RUN go-wrapper install . ./cmd/...
+
+# Clean files
+####RUN rm -rf /go/src/*; \
+####    rm -rf /var/cache/apk/*; \
+####    apk del glide git;
