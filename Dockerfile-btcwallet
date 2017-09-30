@@ -2,7 +2,7 @@ FROM alpine
 
 LABEL maintainer="興怡"
 ENV GOPATH=/go \
-    PROJ_DIR=github.com/btcsuite/btcd
+    PROJ_DIR=github.com/btcsuite/btcwallet
 
 RUN apk add --no-cache git glide go musl-dev \
  && mkdir -p $GOPATH/src && cd $GOPATH/src \
@@ -13,6 +13,5 @@ RUN apk add --no-cache git glide go musl-dev \
  && apk del glide git go musl-dev \
  && rm -rf /apk /tmp/* /var/cache/apk/* $GOPATH/src/*
 
-EXPOSE 8333 8334
-CMD ["/go/bin/btcd", "--help"]
+CMD ["/go/bin/btcwallet", "--help"]
 

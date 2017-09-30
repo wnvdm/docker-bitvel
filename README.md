@@ -1,35 +1,39 @@
-# What is this?
+# docker-btcd
 
-This is a Docker image for the Golang Bitcoin full node, <tt>btcd</tt>
-Docker lets us run it without installing Go tools. Docker
-also allows execution on Linux/Win/MacOS
+This is a Docker image for the Golang Bitcoin full node, btcd. 
+ Docker lets us run it without installing Go tools. 
+ Docker also allows execution on Linux/Win/MacOS
 
 > [github.com/btcsuite/btcd](https://github.com/btcsuite/btcd)
 
 
-# How to use this image
-
-## With the source
+## Quickstart
 
 1. Install [Docker](https://docker.com/)
 2. Git clone the [src Dockerfile](https://github.com/patterns/docker-btcd)
 3. From the cloned directory, build and run
 
 
-You can build and run the Docker image:
-
 ```console
 $ docker build -t btcd .
-$ docker run -it --rm btcd btcctl -h
+$ docker run -it --rm btcd
 ```
 
 
-## With the pre-built image
+## BTC Wallet
 
-1. Install [Docker](https://docker.com/)
-2. Run
+1. Modify the sample.conf configuration files
+2. Run Docker Compose
+
 
 ```console
-$ docker run -it --rm patterns/btcd btcctl -h
+$ docker-compose up
 ```
 
+
+## Credits
+
+
+btcd and btcwallet are by
+ [The btcsuite developers](https://github.com/btcsuite/btcd/)
+ [(LICENSE)](https://github.com/btcsuite/btcd/blob/master/LICENSE)

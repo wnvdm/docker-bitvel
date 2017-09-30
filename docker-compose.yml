@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  btcd:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8333:8333"
+      - "8334:8334"
+    volumes:
+      - type: bind
+        source: ./btcd
+        target: /go/btcd
+    command: ["/go/bin/btcd", "-C", "/go/btcd/sample.conf"]
+  btcwallet:
+    build: 
+      context: .
+      dockerfile: Dockerfile-btcwallet
+    volumes:
+      - type: bind
+        source: ./btcwallet
+        target: /go/btcwallet
+    command: ["/go/bin/btcwallet", "-C", "/go/btcwallet/sample.conf"]
+
