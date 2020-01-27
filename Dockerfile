@@ -1,18 +1,25 @@
-FROM alpine
+FROM python:3.6-alpine
 
-LABEL maintainer="興怡"
-ENV GOPATH=/go \
-    PROJ_DIR=github.com/btcsuite/btcd
+RUN adduser -D bitvel
 
-RUN apk add --no-cache git glide go musl-dev \
- && mkdir -p $GOPATH/src && cd $GOPATH/src \
- && git clone https://${PROJ_DIR} ${PROJ_DIR} \
- && cd $PROJ_DIR \
- && glide install \
- && go install . ./cmd/... \
- && apk del glide git go musl-dev \
- && rm -rf /apk /tmp/* /var/cache/apk/* $GOPATH/src/*
+WORKDIR /home/bitvel
 
-EXPOSE 8333 8334
-CMD ["/go/bin/btcd", "--help"]
+RUN apk add --update icu-dev && apk add gcc && apk add g++
 
+COPY requirements.txt requirements.txt
+RUN python3 -m venv venv
+RUN venv/bin/pip3 install -r requirements.txt
+RUN venv/bin/pip3 install gunicorn
+
+COPY app app
+COPY migrations migrations
+COPY btcstokvel.py config.py boot.sh ./
+RUN chmod +x boot.sh
+
+ENV FLASK_APP=btcstokvel.py
+
+RUN chown -R bitvel:bitvel ./
+USER bitvel
+
+EXPOSE 5000
+ENTRYPOINT ["./boot.sh"]

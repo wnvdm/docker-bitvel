@@ -1,30 +1,19 @@
-# docker-btcd
+# docker-bitvel
 
-This is a Docker image for the Golang Bitcoin full node, btcd. 
- Docker lets us run it without installing Go tools. 
- Docker also allows execution on Linux/Win/MacOS
+This is the Docker image for bitvel, including btcd (Golang Bitcoin full node)
+ and btcwallet (Golang btcd RPC client and wallet). 
 
-> [github.com/btcsuite/btcd](https://github.com/btcsuite/btcd)
+
+> [github.com/wnvdm/bitvel](https://github.com/wnvdm/bitvel)
 
 
 ## Quickstart
 
 1. Install [Docker](https://docker.com/)
-2. Git clone the [src Dockerfile](https://github.com/patterns/docker-btcd)
-3. From the cloned directory, build and run
-
-
-```console
-$ docker build -t btcd .
-$ docker run -it --rm btcd
-```
-
-
-## BTC Wallet
-
-1. Modify the sample.conf configuration files
-2. Run Docker Compose
-
+2. Git clone the [src Dockerfile](https://github.com/wnvdm/docker-bitvel)
+3. Modify the sample.conf configuration files
+3. Modify the .env configuration file
+4. Run Docker Compose
 
 ```console
 $ docker-compose up
@@ -33,7 +22,9 @@ $ docker-compose up
 
 ## Credits
 
-
+Original compose config by [patterns]
+ https://github.com/patterns
 btcd and btcwallet are by
  [The btcsuite developers](https://github.com/btcsuite/btcd/)
  [(LICENSE)](https://github.com/btcsuite/btcd/blob/master/LICENSE)
+

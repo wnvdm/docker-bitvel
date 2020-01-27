@@ -1,9 +1,39 @@
 version: '3.7'
 services:
+
+  bitvel:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:5000"
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+    env_file: .env
+
+  redis:
+    image:
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+
+  worker:
+    image:
+      restart_policy:
+      condition: on-failure
+      delay: 5s
+
+  es:
+    image:
+    restart_policy:
+      condition: on-failure
+      delay: 5s
+
   btcd:
     build: 
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-btcd
     ports:
       - "8333:8333"
       - "8334:8334"
@@ -12,6 +42,7 @@ services:
         source: ./btcd
         target: /go/btcd
     command: ["/go/bin/btcd", "-C", "/go/btcd/sample.conf"]
+    
   btcwallet:
     build: 
       context: .
