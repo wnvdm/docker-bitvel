@@ -23,7 +23,7 @@ $ docker-compose up
 ## Credits
 
 Original compose config by [patterns]
- https://github.com/patterns
+ https://github.com/patterns  
 btcd and btcwallet are by
  [The btcsuite developers](https://github.com/btcsuite/btcd/)
  [(LICENSE)](https://github.com/btcsuite/btcd/blob/master/LICENSE)
